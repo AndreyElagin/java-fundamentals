@@ -1,0 +1,4 @@
+rootProject.name = 'java-fundamentals'
+include 'strings-module'
+include 'io-streams-module'
+
