@@ -12,6 +12,7 @@ import java.util.Set;
  * другой файл. Используйте только байтовые потоки ввода-вывода.
  */
 public class ByteStreams {
+    
     private static Set<String> keywords;
     private static String charset = "UTF-8";
 
