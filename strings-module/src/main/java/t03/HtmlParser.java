@@ -24,7 +24,9 @@ public class HtmlParser {
 
     public void initReader() {
         try {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), "windows-1251"));
+            reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(fileName), "windows-1251"));
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -48,7 +50,6 @@ public class HtmlParser {
     public boolean checkConsistency() throws IOException {
         Matcher matcher = Pattern.compile("(pic(\\d+))")
                 .matcher(body);
-
         Boolean isConsistent = true;
         int i = 1;
         while (matcher.find() && isConsistent) {
@@ -59,13 +60,15 @@ public class HtmlParser {
     }
 
     public int countAndPrintSentences() {
-        Matcher matcher = Pattern.compile("(\\(([Рр])ис\\. +\\d+\\))")
+        //todo need to handle double and more occurrences in sentence
+        Matcher matcher = Pattern.compile("[A-ZА-Я][^?!.]+(\\(([Рр])ис\\. +\\d+(,\\d+)?\\))(([^?!.]+[?!.])|([?!.\\s]))")
                 .matcher(body);
-        System.out.println(matcher.find());
+        int count = 0;
         while (matcher.find()) {
-            System.out.println(matcher.group());
+            System.out.println(matcher.group().replaceAll("\\s+", " "));
+            count++;
         }
-        return 0;
+        return count;
     }
 
 }
