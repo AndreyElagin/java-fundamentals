@@ -1,9 +1,9 @@
 package t01;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+
+import static utils.Keywords.CHARSET;
+import static utils.Keywords.KEYWORDS;
 
 /**
  * Задание 1. Работа с байтовыми потоками ввода-вывода
@@ -12,37 +12,23 @@ import java.util.Set;
  * другой файл. Используйте только байтовые потоки ввода-вывода.
  */
 public class ByteStreams {
-    
-    private static Set<String> keywords;
-    private static String charset = "UTF-8";
 
-    static {
-        String words = "abstract, continue, for, new, switch, assert, default, goto, "
-                + "package, synchronized, boolean, do, if, private, this, break, "
-                + "double, implements, protected, throw, byte, else, import, public, "
-                + "throws, case, enum, instanceof, return, transient, catch, extends, "
-                + "int, short, try, char, final, interface, static, void, class, "
-                + "finally, long, strictfp, volatile, const, float, native, super, while ";
-        keywords = new HashSet<>(Arrays.asList(words.split(", ")));
-    }
-
-    public static int countWords(String fileNameFrom, String fileNameTo) {
+    public static int countWordsAndWrite(String fileNameFrom, String fileNameTo) {
         byte[] bytesReaded;
         int counter = 0;
         try (FileInputStream inFile = new FileInputStream(fileNameFrom)) {
             int bytesAvailable = inFile.available();
             bytesReaded = new byte[bytesAvailable];
             int count = inFile.read(bytesReaded, 0, bytesAvailable);
-
             try (FileOutputStream outFile = new FileOutputStream(fileNameTo)) {
-                for (String str : new String(bytesReaded).split(" ")) {
-                    if (keywords.contains(str)) {
+                for (String str : new String(bytesReaded).split("\\s+")) {
+                    if (KEYWORDS.contains(str)) {
                         counter++;
-                        outFile.write(str.getBytes(charset));
-                        outFile.write("\n".getBytes(charset));
+                        outFile.write(str.getBytes(CHARSET));
+                        outFile.write("\n".getBytes(CHARSET));
                     }
                 }
-                outFile.write(("Number of occurrences: " + counter).getBytes(charset));
+                outFile.write(("Number of occurrences: " + counter).getBytes(CHARSET));
             }
         } catch (IOException e) {
             e.printStackTrace();
