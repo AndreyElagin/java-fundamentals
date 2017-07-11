@@ -8,6 +8,7 @@ public class Keywords {
 
     public final static Set<String> KEYWORDS;
     public final static String CHARSET = "UTF-8";
+    public final static String CHARSET_16 = "UTF-16";
 
     static {
         String words = "abstract, continue, for, new, switch, assert, default, goto, "
