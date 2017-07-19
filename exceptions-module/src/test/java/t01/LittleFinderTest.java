@@ -41,7 +41,7 @@ public class LittleFinderTest {
     public void list() throws Exception {
         String testFile = testPath + "/test";
         assertThat(lf.list(testFile), is("hello"));
-        assertThat(lf.list(testPath), is("example\ntest\n"));
+        assertThat(lf.list(testPath), is("example\nnotexisthere\nt02.properties\ntest\n"));
     }
 
     @Test

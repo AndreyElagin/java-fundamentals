@@ -2,4 +2,6 @@ rootProject.name = 'java-fundamentals'
 include 'strings-module'
 include 'io-streams-module'
 include 'exceptions-module'
+include 'intro-module'
+include 'oop-module'
 
