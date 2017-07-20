@@ -4,4 +4,5 @@ include 'io-streams-module'
 include 'exceptions-module'
 include 'intro-module'
 include 'oop-module'
+include 'collections-module'
 
